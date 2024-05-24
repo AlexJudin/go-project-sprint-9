@@ -17,7 +17,6 @@ func Generator(ctx context.Context, ch chan<- int64, fn func(int64)) {
 	// 1. Функция Generator
 	var val int64 = 1
 	defer close(ch)
-
 	for {
 		select {
 		case ch <- val:
