@@ -73,13 +73,13 @@ func main() {
 	// 4. Собираем числа из каналов outs
 	for i := 0; i < NumOut; i++ {
 		wg.Add(1)
-		go func(in <-chan int64, i int) {
+		go func(in <-chan int64, index int64) {
 			defer wg.Done()
 			for v := range in {
 				chOut <- v
-				amounts[i]++
+				amounts[index]++
 			}
-		}(outs[i], i)
+		}(outs[i], int64(i))
 	}
 
 	go func() {
